@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react'
+import styled from "styled-components";
+import FilterMenu from './components/FilterMenu';
+import { fetchFacets, fetchMovies } from './utilities/api';
 
 function App() {
+  const [state, setState] = useState([])
+  const [facets, setFacets] = useState([])
+  useEffect(() => {
+    fetchMovies().then((res) => setState(res));
+    fetchFacets().then((res) => setFacets(res))
+    state && console.log(state)
+    facets && console.log(facets)
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <AppContainer>
+        <FilterMenu/>
+      </AppContainer>
   );
 }
 
 export default App;
+
+const AppContainer = styled.div`
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ padding: 100px;
+`;
