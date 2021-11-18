@@ -1,43 +1,44 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import FilterItem from "./FilterItem";
 import styled from "styled-components";
+import { Facets } from "../types/facets";
+import { validateLocaleAndSetLanguage } from "typescript";
 // parent state for the filter item
 
-const FilterMenu = ({ facets = {} }) => {
+const FilterMenu = ({ facets }: { facets: Facets }) => {
   const [checkboxState, setCheckboxState] = useState({});
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // copy the original state,
-    const newState = { ...checkboxState, [e.target.id]: e.target.checked };
+  const handleChange = (e: ChangeEvent<HTMLInputElement>, titleKey: string) => {
+    // const newState = { ...checkboxState, [e.target.id]: e.target.checked };
+    const newState = {
+      ...checkboxState,
+      [titleKey]: { [e.target.id]: e.target.checked },
+    };
+    // const sample = { Type: { movie: true, series: false } };
     setCheckboxState(newState);
-    console.log(Object.entries(newState));
-    console.log(newState);
-  };
 
+    console.log(newState)
+  };
   return (
     <FilterMenuContainer>
-      <h1>Type</h1>
-      <label htmlFor="movies">
-        {" "}
-        Movies
-        <input
-          type="checkbox"
-          id="movies"
-          name="movies"
-          value="movies"
-          onChange={handleChange}
-        />
-      </label>
-      <label htmlFor="series">
-        {" "}
-        Series
-        <input
-          type="checkbox"
-          id="series"
-          name="series"
-          value="series"
-          onChange={handleChange}
-        />
-      </label>
+      {Object.entries(facets.movies.filters).map(([titleKey, value]) => (
+        <>
+          <h1 className="title">{titleKey}</h1>
+          <h3>{Object.values(value.values[0].label)}</h3>
+          {value.values.map((item: any) => (
+            <label htmlFor={item.label}>
+              {" "}
+              {item.label}
+              <input
+                type="checkbox"
+                id={item.label}
+                name={item.label}
+                value={item.label}
+                onChange={(e) => handleChange(e, titleKey)}
+              />
+            </label>
+          ))}
+        </>
+      ))}
     </FilterMenuContainer>
   );
 };
@@ -48,5 +49,8 @@ const FilterMenuContainer = styled.div`
   flex-direction: column;
   > input {
     align-self: flex-end;
+  }
+  .title {
+    text-transform: capitalize;
   }
 `;

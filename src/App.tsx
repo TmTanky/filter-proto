@@ -8,8 +8,8 @@ function App() {
   const [state, setState] = useState(moviesData);
   const [facets, setFacets] = useState(facetsData);
   useEffect(() => {
-    console.log(state);
-    console.log(facets);
+    // console.log(state);
+    // console.log(facets);
   }, []);
   return (
     <AppContainer>
