@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import FilterItem from "./FilterItem";
 import styled from "styled-components";
 // parent state for the filter item
@@ -9,8 +9,11 @@ const FilterMenu = () => {
     // copy the original state,
     const newState = { ...checkboxState, [e.target.id]: e.target.checked };
     setCheckboxState(newState)
+    console.log(Object.entries(newState))
     console.log(newState)
   };
+
+
   return (
     <FilterMenuContainer>
       <h1>Type</h1>
