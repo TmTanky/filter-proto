@@ -49,9 +49,6 @@ const newData = data.filter((item) => {
             case (item.Watched): {
                 return objectIndex === 'yes' ? true : false;
             }
-
-
-
         }
     }
 })

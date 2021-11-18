@@ -2,22 +2,20 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import FilterItem from "./FilterItem";
 import styled from "styled-components";
 import { Facets } from "../types/facets";
-import { validateLocaleAndSetLanguage } from "typescript";
 // parent state for the filter item
 
+type CheckboxState = {
+  [key: string] : {
+    [key: string] : boolean
+  }
+}
 const FilterMenu = ({ facets }: { facets: Facets }) => {
-  const [checkboxState, setCheckboxState] = useState({});
+  const [checkboxState, setCheckboxState] = useState<CheckboxState>({});
   const handleChange = (e: ChangeEvent<HTMLInputElement>, titleKey: string) => {
-    // const newState = { ...checkboxState, [e.target.id]: e.target.checked };
-    const newState = {
-      ...checkboxState,
-      [titleKey]: { [e.target.id]: e.target.checked },
-    };
-    // const sample = { Type: { movie: true, series: false } };
-    setCheckboxState(newState);
-
-    console.log(newState)
+    
+    setCheckboxState({ ...checkboxState, [titleKey]: { ...checkboxState[titleKey], [e.target.id]: e.target.checked } })
   };
+  console.log(checkboxState)
   return (
     <FilterMenuContainer>
       {Object.entries(facets.movies.filters).map(([titleKey, value]) => (

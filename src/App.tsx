@@ -3,13 +3,14 @@ import styled from "styled-components";
 import FilterMenu from "./components/FilterMenu";
 import { facetsData } from "./data/facets";
 import { moviesData } from "./data/movies";
+import { fetchFacets, fetchMovies } from "./utilities/api";
 
 function App() {
   const [state, setState] = useState(moviesData);
   const [facets, setFacets] = useState(facetsData);
   useEffect(() => {
-    // console.log(state);
-    // console.log(facets);
+    // state && console.log(state);
+    // facets && console.log(facets);
   }, []);
   return (
     <AppContainer>
