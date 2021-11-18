@@ -23,7 +23,6 @@ const FilterMenu = ({ facets }: { facets: Facets }) => {
       {Object.entries(facets.movies.filters).map(([titleKey, value]) => (
         <>
           <h1 className="title">{titleKey}</h1>
-          <h3>{Object.values(value.values[0].label)}</h3>
           {value.values.map((item: any) => (
             <label htmlFor={item.label}>
               {" "}
