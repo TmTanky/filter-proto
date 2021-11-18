@@ -13,7 +13,7 @@ function App() {
   }, []);
   return (
     <AppContainer>
-      <FilterMenu />
+      <FilterMenu facets={facets} />
     </AppContainer>
   );
 }

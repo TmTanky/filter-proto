@@ -3,16 +3,15 @@ import FilterItem from "./FilterItem";
 import styled from "styled-components";
 // parent state for the filter item
 
-const FilterMenu = () => {
+const FilterMenu = ({ facets = {} }) => {
   const [checkboxState, setCheckboxState] = useState({});
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     // copy the original state,
     const newState = { ...checkboxState, [e.target.id]: e.target.checked };
-    setCheckboxState(newState)
-    console.log(Object.entries(newState))
-    console.log(newState)
+    setCheckboxState(newState);
+    console.log(Object.entries(newState));
+    console.log(newState);
   };
-
 
   return (
     <FilterMenuContainer>
@@ -20,12 +19,24 @@ const FilterMenu = () => {
       <label htmlFor="movies">
         {" "}
         Movies
-        <input type="checkbox" id="movies" name="movies" value="movies" onChange={handleChange}/>
+        <input
+          type="checkbox"
+          id="movies"
+          name="movies"
+          value="movies"
+          onChange={handleChange}
+        />
       </label>
       <label htmlFor="series">
         {" "}
         Series
-        <input type="checkbox" id="series" name="series" value="series" onChange={handleChange}/>
+        <input
+          type="checkbox"
+          id="series"
+          name="series"
+          value="series"
+          onChange={handleChange}
+        />
       </label>
     </FilterMenuContainer>
   );
