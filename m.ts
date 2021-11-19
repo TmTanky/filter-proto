@@ -905,10 +905,10 @@ const newFilterState = {
     //     "No": true
     // },
     "metascore": {
-        "< 60": true,
+        // "< 60": true,
         // "Between 60 & 80": true,
         // "Between 80 & 90": true,
-        // "> 90": true,
+        "> 90": true,
         // "N/A": true
     },
 }
@@ -916,7 +916,7 @@ const newFilterState = {
 const newData = moviesData.filter((item) => {
     for (const [objectIndex, objectValue] of Object.entries(newFilterState)) {
         for (const [filterIndex, filterValue] of Object.entries(objectValue)) {
-            switch (true) {
+            switch (filterValue === true) {
                 case (filterIndex === item.Type): return true;
                 case (filterIndex === item.Genre): return true;
                 case (filterIndex === item.Year): return true;

@@ -1,4 +1,4 @@
-export interface Facets {
+export interface Movies {
     Title:         string;
     Year:          string;
     Rated:         string;

@@ -1,15 +1,19 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
-import FilterItem from "./FilterItem";
+import React, { ChangeEvent, useState } from "react";
 import styled from "styled-components";
 import { Facets } from "../types/facets";
-// parent state for the filter item
 
 type CheckboxState = {
   [key: string]: {
     [key: string]: boolean;
   };
 };
-const FilterMenu = ({ facets }: { facets: Facets }) => {
+const FilterMenu = ({
+  facets,
+  checkboxStateToParent,
+}: {
+  facets: Facets;
+  checkboxStateToParent: (checkboxState: {}) => void;
+}) => {
   const [checkboxState, setCheckboxState] = useState<CheckboxState>({});
   const handleChange = (e: ChangeEvent<HTMLInputElement>, titleKey: string) => {
     setCheckboxState({
@@ -19,8 +23,8 @@ const FilterMenu = ({ facets }: { facets: Facets }) => {
         [e.target.id]: e.target.checked,
       },
     });
+    checkboxStateToParent(checkboxState);
   };
-  console.log(checkboxState);
   return (
     <FilterMenuContainer>
       {Object.entries(facets.movies.filters).map(([titleKey, value]) => (
