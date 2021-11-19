@@ -2,11 +2,6 @@ import React, { ChangeEvent, useState } from "react";
 import styled from "styled-components";
 import { Facets } from "../types/facets";
 
-type CheckboxState = {
-  [key: string]: {
-    [key: string]: boolean;
-  };
-};
 const FilterMenu = ({
   facets,
   checkboxStateToParent,
@@ -14,12 +9,10 @@ const FilterMenu = ({
   facets: Facets;
   checkboxStateToParent: (checkboxState: {}) => void;
 }) => {
-  const [checkboxState, setCheckboxState] = useState<CheckboxState>({});
+  const [checkboxState, setCheckboxState] = useState({});
   const handleChange = (e: ChangeEvent<HTMLInputElement>, titleKey: string) => {
     setCheckboxState({
-      ...checkboxState,
       [titleKey]: {
-        ...checkboxState[titleKey],
         [e.target.id]: e.target.checked,
       },
     });
