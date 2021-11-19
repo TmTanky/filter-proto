@@ -5,17 +5,22 @@ import { Facets } from "../types/facets";
 // parent state for the filter item
 
 type CheckboxState = {
-  [key: string] : {
-    [key: string] : boolean
-  }
-}
+  [key: string]: {
+    [key: string]: boolean;
+  };
+};
 const FilterMenu = ({ facets }: { facets: Facets }) => {
   const [checkboxState, setCheckboxState] = useState<CheckboxState>({});
   const handleChange = (e: ChangeEvent<HTMLInputElement>, titleKey: string) => {
-    
-    setCheckboxState({ ...checkboxState, [titleKey]: { ...checkboxState[titleKey], [e.target.id]: e.target.checked } })
+    setCheckboxState({
+      ...checkboxState,
+      [titleKey]: {
+        ...checkboxState[titleKey],
+        [e.target.id]: e.target.checked,
+      },
+    });
   };
-  console.log(checkboxState)
+  console.log(checkboxState);
   return (
     <FilterMenuContainer>
       {Object.entries(facets.movies.filters).map(([titleKey, value]) => (

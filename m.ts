@@ -1,10 +1,11 @@
 const data = [{
     "Title": "Blade Runner",
-    "Year": "2000",
+    "Year": "1959",
     "Metascore": "84",
     "Type": "movie",
     "Genre": "romance",
-    "Watched": "True"
+    "Watched": "True",
+    "Saved": "True",
 },
 {
     "Title": "Gladiator",
@@ -13,49 +14,82 @@ const data = [{
     "Type": "series",
     "Genre": "action",
     "Watched": "False",
-}];
+    "Saved": "False",
+},
+{
+    "Title": "Test3",
+    "Year": "1969",
+    "Metascore": "59",
+    "Type": "movie",
+    "Genre": "comedy",
+    "Watched": "False",
+    "Saved": "False",
+},
+{
+    "Title": "ULTIMATE TEST",
+    "Year": "1969",
+    "Metascore": "59",
+    "Type": "imba",
+    "Genre": "imba",
+    "Watched": "True",
+    "Saved": "True",
+},
+];
 
-// const newData = data.reduce((previousValue, item, currentIndex) => {
-//     const obj = {}
-//     const filterState = { 'series': true }
-//     const [filterIndex, filterValue] = Object.entries(filterState);
-//     for (const [objectIndex, objectValue] of Object.entries(item)) {
-//         switch (objectIndex) {
-//             case 'Type':
-//                 console.log(objectIndex, objectValue)
-//                 break;
-//             case 'Year':
-//                 break;
-//             case 'Metascore':
-//                 break;
-//             default:
-//                 obj[objectIndex] = objectValue
-//         }
+const newFilterState = {
+    // return tayo ng isang item lang
+    "type": {
+        "imba": true
+    },
+    "genre": {
+        "imba": true
+    },
+    "watched": {
+        "Yes": true
+    },
+    "saved": {
+        "No": true
+    }
+}
+
+// const filterState = { 'series': true, 'comedy': true, }
+// const filterArray = [...filterState]
+// const newData = data.filter((item) => {
+//     for (const [filterIndex, filterValue] of Object.entries(filterState)) {
+//       console.log(filterIndex, filterValue)
 //     }
-//     return previousValue.concat([obj])
-// }, [])
-// console.log('new data', newData)
+// })
+// console.log(newData);
 
-const newData = data.filter((item) => {
-    const filterState = { 'series': true, '1939': true, '< 60': true, "action": true, 'yes': true }
-    for (const [objectIndex, objectValue] of Object.entries(filterState)) {
-        switch (objectIndex.toLowerCase()) {
-            case (item.Type):
-                return true;
-            case (item.Year):
-                return true;
-            case (item.Genre):
-                return true;
-            case (item.Watched): {
-                return objectIndex === 'yes' ? true : false;
+const newData = data.reduce((previousValue, item, currentIndex) => {
+    console.log(previousValue)
+    const obj = {}
+    for (const [objectIndex, objectValue] of Object.entries(newFilterState)) {
+        console.log(item)
+        console.log(objectIndex)
+        for (const [filterIndex, filterValue] of Object.entries(objectValue)) {
+            switch (true) {
+                case (filterIndex === item.Type): {
+                    console.log(item, 'with series**************************************************')
+                    Object.assign(obj, item)
+                    break;
+                }
+                case (filterIndex === item.Genre): {
+                    console.log(item, 'with comedyXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+                    Object.assign(obj, item)
+                    break;
+                }
+                case (objectIndex === 'watched' && filterIndex === 'Yes'):
+                case (objectIndex === 'saved' && filterIndex === 'Yes'): {
+                    console.log(item, 'with Yes-----------------------------------------------------')
+                    Object.assign(obj, item)
+                    break;
+                }
             }
         }
+
     }
-})
-console.log(newData)
-// function validateMetascore(metascore: string) {
-//     const number = parseInt(metascore);
-//     if (number <= 60) return true
-//     if (number >= 60 && number <= 80) return true
-//     if (number >= 90) return true
-// }
+    return [obj]
+}, [])
+
+console.log('new data', newData)
