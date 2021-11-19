@@ -23,19 +23,21 @@ const FilterMenu = ({
       {Object.entries(facets.movies.filters).map(([titleKey, value]) => (
         <>
           <h1 className="title">{titleKey}</h1>
-          {value.values.map((item: any) => (
-            <label htmlFor={item.label}>
-              {" "}
-              {item.label}
-              <input
-                type="checkbox"
-                id={item.label}
-                name={item.label}
-                value={item.label}
-                onChange={(e) => handleChange(e, titleKey)}
-              />
-            </label>
-          ))}
+          <span>
+            {value.values.map((item: any) => (
+              <label htmlFor={item.label}>
+                {" "}
+                {item.label}
+                <input
+                  type="checkbox"
+                  id={item.label}
+                  name={item.label}
+                  value={item.label}
+                  onChange={(e) => handleChange(e, titleKey)}
+                />
+              </label>
+            ))}
+          </span>
         </>
       ))}
     </FilterMenuContainer>
@@ -46,10 +48,15 @@ export default FilterMenu;
 const FilterMenuContainer = styled.div`
   display: flex;
   flex-direction: column;
+  max-height: 900px;
+  flex-wrap: wrap;
   > input {
     align-self: flex-end;
   }
   .title {
     text-transform: capitalize;
+  }
+  > span {
+    width: 300px;
   }
 `;

@@ -1,6 +1,4 @@
 // @ts-nocheck
-import React from "react";
-import { Movies } from "../types/movies";
 import styled from "styled-components";
 const MoviesList = ({ moviesData = [] }: any) => {
   console.log(moviesData);
@@ -17,5 +15,5 @@ const MoviesList = ({ moviesData = [] }: any) => {
 export default MoviesList;
 
 const MoviesListContainer = styled.div`
-margin: 0 0 0 50px;
+  margin: 0 0 0 50px;
 `;
