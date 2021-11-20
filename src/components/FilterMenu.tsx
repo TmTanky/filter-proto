@@ -28,7 +28,7 @@ const FilterMenu = ({
           <h1 className="title">{titleKey}</h1>
           <span>
             {value.values.map((item: any) => (
-              <label htmlFor={item.label}>
+              <label htmlFor={item.label} key={item.label}>
                 {" "}
                 {item.label}
                 <input
