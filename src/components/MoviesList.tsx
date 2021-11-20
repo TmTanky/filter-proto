@@ -6,7 +6,7 @@ const MoviesList = ({ moviesData = [] }: any) => {
     <MoviesListContainer>
       <h1>Movies List {moviesData.length}</h1>
       {moviesData.map((item) => (
-        <li>{item.Title}</li>
+        <li key={item.imdbID}>{item.Title}</li>
       ))}
     </MoviesListContainer>
   );
