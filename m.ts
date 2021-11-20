@@ -891,10 +891,9 @@ const moviesData = [
 const newFilterState = {
     // "type": {
     //     "series": true,
+    //     "movie": true,
     // },
     "genre": {
-
-        "Action": true,
         "Sci-Fi": true,
         "Thriller": true,
     },
@@ -915,6 +914,7 @@ const newFilterState = {
     //     // "N/A": true
     // },
 }
+
 // eslint-disable-next-line array-callback-return
 const newData = moviesData.filter((item) => {
     for (const [objectIndex, objectValue] of Object.entries(newFilterState)) {
@@ -944,35 +944,7 @@ const newData = moviesData.filter((item) => {
 })
 console.log('new data', newData.length)
 
-// const validateMetascore = () => {
-//   const value = 84;
-//   // less than 60, therefore 59
-//   if(value < 60) {
-//       console.log('< 60')
-//   }
-//   // greater than 90, therefore 91
-//   if(value > 90) {
-//       console.log('> 90')
-//   }
-//   // between 60 to 80
-//   if(value >= 60 && value <= 80) {
-//       console.log('between 60 to 80')
-//   }
-//   if(value >= 80 && value <= 90) {
-//       console.log('between 80 to 90')
-//   }
-// }
-// validateMetascore()
 
-function testing() {
-    const action = "Action";
-    const scifi = "Sci-Fi";
-    const thriller = "Thriller";
 
-    const value = "Action, Sci-Fi, Thriller"
 
-    const result = action.includes(value);
-    const regexresult = new RegExp(action).test(value);
-    console.log(regexresult)
-}
-testing();
+

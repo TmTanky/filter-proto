@@ -1,14 +1,20 @@
 //@ts-nocheck
-export const newMoviesState = (filterState, movies) => {
-    if (filterState === {}) {
-        console.log('EMPTY FILTER STATE')
+const trueValues = (objectValue) => {
+    const filteredObj = {}
+    for (const [itemKey, itemValue] of Object.entries(objectValue)) {
+        if (itemValue) {
+            filteredObj[itemKey] = itemValue
+        }
     }
+    return filteredObj;
+}
+export const newMoviesState = (filterState, movies) => {
+    // eslint-disable-next-line array-callback-return
     const newData = movies.filter((item) => {
         for (const [objectIndex, objectValue] of Object.entries(filterState)) {
-            for (const [filterIndex, filterValue] of Object.entries(objectValue)) {
+            for (const [filterIndex] of Object.entries(trueValues(objectValue))) {
                 switch (true) {
                     case (filterIndex === item.Type): return true;
-                    // case (filterIndex.includes((item.Genre.toLowerCase()))): return true;
                     case (new RegExp(filterIndex).test(item.Genre)): return true;
                     case (filterIndex === item.Year): return true;
                     case (objectIndex === 'watched' && item.Watched === 'True' && filterIndex === 'Yes'):

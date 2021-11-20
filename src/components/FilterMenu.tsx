@@ -1,7 +1,11 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Facets } from "../types/facets";
-
+type CheckboxState = {
+  [key: string]: {
+    [key: string]: boolean;
+  };
+};
 const FilterMenu = ({
   facets,
   checkboxStateToParent,
@@ -9,16 +13,18 @@ const FilterMenu = ({
   facets: Facets;
   checkboxStateToParent: (checkboxState: {}) => void;
 }) => {
-  const [checkboxState, setCheckboxState] = useState({});
+  const [checkboxState, setCheckboxState] = useState<CheckboxState>({});
   const handleChange = (e: ChangeEvent<HTMLInputElement>, titleKey: string) => {
     setCheckboxState({
+      ...checkboxState,
       [titleKey]: {
+        ...checkboxState[titleKey],
         [e.target.id]: e.target.checked,
       },
     });
   };
+
   useEffect(() => {
-    console.log(checkboxState)
     checkboxStateToParent(checkboxState);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkboxState]);
