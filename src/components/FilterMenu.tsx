@@ -24,7 +24,7 @@ const FilterMenu = ({
   return (
     <FilterMenuContainer>
       {Object.entries(facets.movies.filters).map(([titleKey, value]) => (
-        <>
+        <div key={titleKey}>
           <h1 className="title">{titleKey}</h1>
           <span>
             {value.values.map((item: any) => (
@@ -42,7 +42,7 @@ const FilterMenu = ({
               </label>
             ))}
           </span>
-        </>
+        </div>
       ))}
     </FilterMenuContainer>
   );
@@ -60,7 +60,7 @@ const FilterMenuContainer = styled.div`
   .title {
     text-transform: capitalize;
   }
-  > span {
+  > div {
     width: 300px;
   }
 `;
