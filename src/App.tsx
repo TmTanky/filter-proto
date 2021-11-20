@@ -14,8 +14,7 @@ function App() {
     // facets && console.log(facets);
   }, []);
   const checkboxState = (checkboxState: {}) => {
-    console.log(checkboxState);
-    setState(newMoviesState(checkboxState, moviesData));
+      setState(newMoviesState(checkboxState, moviesData));
   };
   return (
     <AppContainer>

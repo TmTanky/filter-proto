@@ -3,7 +3,7 @@ export const newMoviesState = (filterState, movies) => {
     const newData = movies.filter((item) => {
         for (const [objectIndex, objectValue] of Object.entries(filterState)) {
             for (const [filterIndex, filterValue] of Object.entries(objectValue)) {
-                switch (true) {
+                switch (filterValue === true) {
                     case (filterIndex === item.Type): return true;
                     case (filterIndex === item.Genre): return true;
                     case (filterIndex === item.Year): return true;

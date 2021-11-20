@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Facets } from "../types/facets";
 
@@ -16,8 +16,11 @@ const FilterMenu = ({
         [e.target.id]: e.target.checked,
       },
     });
-    checkboxStateToParent(checkboxState);
   };
+  useEffect(() => {
+      checkboxStateToParent(checkboxState);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [checkboxState]);
   return (
     <FilterMenuContainer>
       {Object.entries(facets.movies.filters).map(([titleKey, value]) => (
@@ -29,6 +32,7 @@ const FilterMenu = ({
                 {" "}
                 {item.label}
                 <input
+                  defaultChecked={false}
                   type="checkbox"
                   id={item.label}
                   name={item.label}
