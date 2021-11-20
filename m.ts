@@ -892,9 +892,12 @@ const newFilterState = {
     // "type": {
     //     "series": true,
     // },
-    // "genre": {
-    //     "imba": true
-    // },
+    "genre": {
+
+        "Action": true,
+        "Sci-Fi": true,
+        "Thriller": true,
+    },
     // "watched": {
     //     "Yes": true
     // },
@@ -904,21 +907,25 @@ const newFilterState = {
     // "saved": {
     //     "No": true
     // },
-    "metascore": {
-        // "< 60": true,
-        // "Between 60 & 80": true,
-        // "Between 80 & 90": true,
-        "> 90": true,
-        // "N/A": true
-    },
+    // "metascore": {
+    //     // "< 60": true,
+    //     // "Between 60 & 80": true,
+    //     // "Between 80 & 90": true,
+    //     "> 90": true,
+    //     // "N/A": true
+    // },
 }
 // eslint-disable-next-line array-callback-return
 const newData = moviesData.filter((item) => {
     for (const [objectIndex, objectValue] of Object.entries(newFilterState)) {
         for (const [filterIndex, filterValue] of Object.entries(objectValue)) {
-            switch (filterValue === true) {
+            switch (true) {
                 case (filterIndex === item.Type): return true;
-                case (filterIndex === item.Genre): return true;
+                case (filterIndex.includes(item.Genre)): {
+                    console.log(filterIndex, item.Genre)
+                    console.log(filterIndex.includes(item.Genre))
+                    return true;
+                }
                 case (filterIndex === item.Year): return true;
                 case (objectIndex === 'watched' && item.Watched === 'True' && filterIndex === 'Yes'):
                 case (objectIndex === 'saved' && item.Saved === 'True' && filterIndex === 'Yes'):
@@ -956,3 +963,16 @@ console.log('new data', newData.length)
 //   }
 // }
 // validateMetascore()
+
+function testing() {
+    const action = "Action";
+    const scifi = "Sci-Fi";
+    const thriller = "Thriller";
+
+    const value = "Action, Sci-Fi, Thriller"
+
+    const result = action.includes(value);
+    const regexresult = new RegExp(action).test(value);
+    console.log(regexresult)
+}
+testing();

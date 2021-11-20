@@ -18,8 +18,9 @@ const FilterMenu = ({
     });
   };
   useEffect(() => {
-      checkboxStateToParent(checkboxState);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    console.log(checkboxState)
+    checkboxStateToParent(checkboxState);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkboxState]);
   return (
     <FilterMenuContainer>

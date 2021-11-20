@@ -1,7 +1,7 @@
 // @ts-nocheck
 import styled from "styled-components";
 const MoviesList = ({ moviesData = [] }: any) => {
-  console.log(moviesData)
+  console.log("moviesData component loads", moviesData);
   return (
     <MoviesListContainer>
       <h1>Movies List {moviesData.length}</h1>

@@ -1,11 +1,15 @@
 //@ts-nocheck
 export const newMoviesState = (filterState, movies) => {
+    if (filterState === {}) {
+        console.log('EMPTY FILTER STATE')
+    }
     const newData = movies.filter((item) => {
         for (const [objectIndex, objectValue] of Object.entries(filterState)) {
             for (const [filterIndex, filterValue] of Object.entries(objectValue)) {
-                switch (filterValue === true) {
+                switch (true) {
                     case (filterIndex === item.Type): return true;
-                    case (filterIndex === item.Genre): return true;
+                    // case (filterIndex.includes((item.Genre.toLowerCase()))): return true;
+                    case (new RegExp(filterIndex).test(item.Genre)): return true;
                     case (filterIndex === item.Year): return true;
                     case (objectIndex === 'watched' && item.Watched === 'True' && filterIndex === 'Yes'):
                     case (objectIndex === 'saved' && item.Saved === 'True' && filterIndex === 'Yes'):
